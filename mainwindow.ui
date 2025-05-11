@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>684</width>
+    <width>680</width>
     <height>633</height>
    </rect>
   </property>
@@ -14,102 +14,119 @@
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">#start_Loading_Page {
-align: center;
-background: #ffff7f;
-}
+   <string notr="true">
 
- #start_Loading_Page &gt; #label {
-padding: 20px;
-color: #000080;
-font: 75 24pt &quot;Bahnschrift&quot;;
+
+#MainWindow {
+background : #3f3f3f;
 }
 
 
+#start_Loading_Page {
+                align: center;
+                background: #ffff7f;
+                }
 
-#main_Buttons_Layout {
-background: #7979fe;
-}
-
-#main_Button_Account, #main_Button_SSM, #main_Button_Schedule, #main_Button_Support, #main_Button_Page4 {
-    background-color: #7575f8;
-    border: 2px solid #7878ff;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-    padding: 15px 3px;
-    color: #000000;
-    font: 75 18pt &quot;Bahnschrift&quot;;
-    text-align: center;
-}
-
-#main_Button_Account:hover, #main_Button_SSM:hover, #main_Button_Schedule:hover, #main_Button_Support:hover, #main_Button_Page4:hover {
-    background-color: #7171f0;
-    color: #ffff7f;
-}
-
-#main_Button_Account:pressed, #main_Button_SSM:pressed, #main_Button_Schedule:pressed, #main_Button_Support:pressed, #main_Button_Page4:pressed {
-    background-color: #5656ba;
-    border: 2px solid #5252d1;
-}
+                #start_Loading_Page &gt; #label {
+                padding: 20px;
+                color: #000080;
+                font: 75 24pt &quot;Bahnschrift&quot;;
+                }
 
 
+                #main_Buttons_Layout {
+                background: #7979fe;
+                }
 
-#le_login, #le_password {
-    border: 1px solid #A0A0A0;
-    border-radius: 5px;
-    padding: 5px;
-    font-size: 14px;
-}
+                #main_Button_Account, #main_Button_SSM, #main_Button_Schedule, #main_Button_Support,
+                #main_Button_Page4 {
+                background-color: #ffa500;
+                border: 2px solid #ffb500;
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
+                border-bottom-left-radius: 0;
+                border-bottom-right-radius: 0;
+                padding: 15px 3px;
+                color: #000000;
+                font: 75 18pt &quot;Bahnschrift&quot;;
+                text-align: center;
+                }
 
-#le_login:focus, #le_password:focus {
-    border: 1px solid #007BFF;
-}
+                #main_Button_Account:hover, #main_Button_SSM:hover, #main_Button_Schedule:hover,
+                #main_Button_Support:hover, #main_Button_Page4:hover {
+                background-color: #9ebeed;
+                color: #ffff7f;
+                }
 
-#pb_login {
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 6px;
-    font-size: 16px;
-}
-
-#pb_login:hover {
-    background-color: #0056b3;
-}
-
-#pb_login:pressed {
-    background-color: #004085;
-}
-
+                #main_Button_Account:pressed, #main_Button_SSM:pressed,
+                #main_Button_Schedule:pressed, #main_Button_Support:pressed,
+                #main_Button_Page4:pressed {
+                background-color: #5656ba;
+                border: 2px solid #5252d1;
+                }
 
 
-#schedule_Button_Monday, #schedule_Button_Tuesday, #schedule_Button_Wednesday, #schedule_Button_Thursday, #schedule_Button_Friday {
-    background-color: #28a745;
-    color: white;
-    border: 2px solid #28a745;
-    border-radius: 8px;
-    padding: 12px;
-    font-size: 16px;
-} 
+                #le_login, #le_password {
+                border: 1px solid #A0A0A0;
+                border-radius: 5px;
+                padding: 5px;
+                font-size: 14px;
+                }
 
-#schedule_Button_Monday:hover, #schedule_Button_Tuesday:hover, #schedule_Button_Wednesday:hover, #schedule_Button_Thursday:hover, #schedule_Button_Friday:hover {
-    background-color: #218838;
-    border: 2px solid #218838;
-}
+                #le_login:focus, #le_password:focus {
+                border: 1px solid #007BFF;
+                }
 
-#schedule_Button_Monday:pressed, #schedule_Button_Tuesday:pressed, #schedule_Button_Wednesday:pressed, #schedule_Button_Thursday:pressed, #schedule_Button_Friday:pressed {
-    background-color: #1e7e34;
-    border: 2px solid #1e7e34;
-}
+                #pb_login {
+                background-color: #007BFF;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                padding: 6px;
+                font-size: 16px;
+                }
 
-#schedule_Button_Monday:disabled, #schedule_Button_Tuesday:disabled, #schedule_Button_Wednesday:disabled, #schedule_Button_Thursday:disabled, #schedule_Button_Friday:disabled {
-    background-color: #c6c8ca;
-    color: #6c757d;
-    border: 2px solid #c6c8ca;
-}</string>
+                #pb_login:hover {
+                background-color: #0056b3;
+                }
+
+                #pb_login:pressed {
+                background-color: #004085;
+                }
+
+
+                #schedule_Button_Monday, #schedule_Button_Tuesday, #schedule_Button_Wednesday,
+                #schedule_Button_Thursday, #schedule_Button_Friday {
+                background-color: #ffce0a;
+                color: white;
+                border: 2px solid #f0c206;
+                border-radius: 8px;
+                padding: 12px;
+                font-size: 16px;
+                }
+
+                #schedule_Button_Monday:hover, #schedule_Button_Tuesday:hover,
+                #schedule_Button_Wednesday:hover, #schedule_Button_Thursday:hover,
+                #schedule_Button_Friday:hover {
+                background-color: #f0c206;
+                border: 2px solid #f0b504;
+                }
+
+                #schedule_Button_Monday:pressed, #schedule_Button_Tuesday:pressed,
+                #schedule_Button_Wednesday:pressed, #schedule_Button_Thursday:pressed,
+                #schedule_Button_Friday:pressed {
+                background-color: #f0b504;
+                border: 2px solid #ffc104;
+                }
+
+                #schedule_Button_Monday:disabled, #schedule_Button_Tuesday:disabled,
+                #schedule_Button_Wednesday:disabled, #schedule_Button_Thursday:disabled,
+                #schedule_Button_Friday:disabled {
+                background-color: #c6c8ca;
+                color: #6c757d;
+                border: 2px solid #c6c8ca;
+                }
+            </string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -132,7 +149,8 @@ background: #7979fe;
       </property>
       <widget class="QWidget" name="start_Loading_Page">
        <property name="whatsThis">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        <string>
+                                    &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <item alignment="Qt::AlignRight|Qt::AlignVCenter">
@@ -170,7 +188,7 @@ background: #7979fe;
         <item>
          <widget class="QStackedWidget" name="stackedWidget_2">
           <property name="currentIndex">
-           <number>3</number>
+           <number>0</number>
           </property>
           <widget class="QWidget" name="page_3">
            <layout class="QVBoxLayout" name="verticalLayout_8" stretch="1,10">
@@ -208,9 +226,6 @@ background: #7979fe;
                 <property name="checked">
                  <bool>true</bool>
                 </property>
-                <attribute name="buttonGroup">
-                 <string notr="true">bg_shedule_buttons</string>
-                </attribute>
                </widget>
               </item>
               <item>
@@ -227,9 +242,6 @@ background: #7979fe;
                 <property name="checkable">
                  <bool>true</bool>
                 </property>
-                <attribute name="buttonGroup">
-                 <string notr="true">bg_shedule_buttons</string>
-                </attribute>
                </widget>
               </item>
               <item>
@@ -246,9 +258,6 @@ background: #7979fe;
                 <property name="checkable">
                  <bool>true</bool>
                 </property>
-                <attribute name="buttonGroup">
-                 <string notr="true">bg_shedule_buttons</string>
-                </attribute>
                </widget>
               </item>
               <item>
@@ -265,9 +274,6 @@ background: #7979fe;
                 <property name="checkable">
                  <bool>true</bool>
                 </property>
-                <attribute name="buttonGroup">
-                 <string notr="true">bg_shedule_buttons</string>
-                </attribute>
                </widget>
               </item>
               <item>
@@ -284,9 +290,6 @@ background: #7979fe;
                 <property name="checkable">
                  <bool>true</bool>
                 </property>
-                <attribute name="buttonGroup">
-                 <string notr="true">bg_shedule_buttons</string>
-                </attribute>
                </widget>
               </item>
              </layout>
@@ -305,8 +308,8 @@ background: #7979fe;
                     <rect>
                      <x>0</x>
                      <y>0</y>
-                     <width>531</width>
-                     <height>486</height>
+                     <width>654</width>
+                     <height>471</height>
                     </rect>
                    </property>
                    <layout class="QVBoxLayout" name="verticalLayout_10">
@@ -331,8 +334,8 @@ background: #7979fe;
                     <rect>
                      <x>0</x>
                      <y>0</y>
-                     <width>658</width>
-                     <height>474</height>
+                     <width>98</width>
+                     <height>28</height>
                     </rect>
                    </property>
                    <layout class="QVBoxLayout" name="verticalLayout_17"/>
@@ -353,8 +356,8 @@ background: #7979fe;
                     <rect>
                      <x>0</x>
                      <y>0</y>
-                     <width>658</width>
-                     <height>474</height>
+                     <width>98</width>
+                     <height>28</height>
                     </rect>
                    </property>
                    <layout class="QVBoxLayout" name="verticalLayout_18"/>
@@ -375,8 +378,8 @@ background: #7979fe;
                     <rect>
                      <x>0</x>
                      <y>0</y>
-                     <width>658</width>
-                     <height>471</height>
+                     <width>98</width>
+                     <height>28</height>
                     </rect>
                    </property>
                    <layout class="QVBoxLayout" name="verticalLayout_16"/>
@@ -397,8 +400,8 @@ background: #7979fe;
                     <rect>
                      <x>0</x>
                      <y>0</y>
-                     <width>531</width>
-                     <height>486</height>
+                     <width>98</width>
+                     <height>28</height>
                     </rect>
                    </property>
                    <layout class="QVBoxLayout" name="verticalLayout_15"/>
@@ -437,6 +440,9 @@ background: #7979fe;
                <layout class="QHBoxLayout" name="horizontalLayout_5">
                 <item>
                  <spacer name="horizontalSpacer">
+                  <property name="orientation">
+                   <enum>Qt::Vertical</enum>
+                  </property>
                   <property name="sizeHint" stdset="0">
                    <size>
                     <width>88</width>
@@ -452,6 +458,9 @@ background: #7979fe;
                   </property>
                   <item>
                    <spacer name="verticalSpacer">
+                    <property name="orientation">
+                     <enum>Qt::Vertical</enum>
+                    </property>
                     <property name="sizeHint" stdset="0">
                      <size>
                       <width>20</width>
@@ -483,6 +492,9 @@ background: #7979fe;
                   </item>
                   <item>
                    <spacer name="verticalSpacer_2">
+                    <property name="orientation">
+                     <enum>Qt::Vertical</enum>
+                    </property>
                     <property name="sizeHint" stdset="0">
                      <size>
                       <width>20</width>
@@ -495,6 +507,9 @@ background: #7979fe;
                 </item>
                 <item>
                  <spacer name="horizontalSpacer_2">
+                  <property name="orientation">
+                   <enum>Qt::Vertical</enum>
+                  </property>
                   <property name="sizeHint" stdset="0">
                    <size>
                     <width>40</width>
@@ -533,13 +548,16 @@ background: #7979fe;
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>670</width>
+                 <width>666</width>
                  <height>479</height>
                 </rect>
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_6">
                 <item>
                  <spacer name="verticalSpacer_3">
+                  <property name="orientation">
+                   <enum>Qt::Vertical</enum>
+                  </property>
                   <property name="sizeHint" stdset="0">
                    <size>
                     <width>20</width>
@@ -679,7 +697,7 @@ background: #7979fe;
 поддержкой</string>
             </property>
             <property name="checkable">
-             <bool>true</bool>
+             <bool>false</bool>
             </property>
             <attribute name="buttonGroup">
              <string notr="true">bg_pages_buttons</string>
@@ -699,6 +717,5 @@ background: #7979fe;
  <connections/>
  <buttongroups>
   <buttongroup name="bg_pages_buttons"/>
-  <buttongroup name="bg_shedule_buttons"/>
  </buttongroups>
 </ui>
