@@ -1,0 +1,174 @@
+{% extends "base.html" %}
+
+{% block title %}{{ event.title }}{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto py-8 px-4 font-sans">
+
+    <div class="mb-6">
+        <a href="{{ url_for('events') }}"
+           class="inline-flex items-center gap-2 font-bold hover:text-neo-purple transition-colors">
+            <i class="fas fa-arrow-left"></i> Назад к календарю
+        </a>
+    </div>
+
+    <div class="bg-white border-4 border-black shadow-hard relative overflow-hidden">
+
+
+        <div class="absolute top-0 right-0 w-24 h-24 bg-neo-yellow border-l-4 border-b-4 border-black flex items-center justify-center">
+            <i class="fas fa-calendar text-2xl"></i>
+        </div>
+
+        <div class="p-6 md:p-10">
+            <div class="flex flex-wrap gap-2 mb-4">
+                {% if event.center %}
+                <span class="bg-neo-purple text-white px-3 py-1 text-xs font-black uppercase border-2 border-black">
+                    {{ event.center }}
+                </span>
+                {% else %}
+                <span class="bg-neo-pink text-white px-3 py-1 text-xs font-black uppercase border-2 border-black">
+                    Общешкольное
+                </span>
+                {% endif %}
+            </div>
+
+
+            <h1 class="text-4xl md:text-5xl font-black uppercase mb-6 pr-16 leading-tight">
+                {{ event.title }}
+            </h1>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+                <div class="bg-neo-green/20 border-2 border-black p-4">
+                    <p class="text-xs font-black uppercase text-gray-500 mb-1">Дата</p>
+                    <p class="font-black text-lg">{{ event.date.strftime('%d.%m.%Y') }}</p>
+                </div>
+                {% if event.time %}
+                <div class="bg-neo-yellow/40 border-2 border-black p-4">
+                    <p class="text-xs font-black uppercase text-gray-500 mb-1">Время</p>
+                    <p class="font-black text-lg">{{ event.time[:5] }}</p>
+                </div>
+                {% endif %}
+                {% if event.organizer %}
+                <div class="bg-neo-pink/20 border-2 border-black p-4">
+                    <p class="text-xs font-black uppercase text-gray-500 mb-1">Организатор</p>
+                    <p class="font-bold">{{ event.organizer }}</p>
+                </div>
+                {% endif %}
+            </div>
+
+            {% if event.responsible_leader %}
+            <div class="bg-neo-purple/10 border-2 border-neo-purple p-4 mb-8 flex items-center gap-3">
+                <i class="fas fa-user-tie text-neo-purple text-2xl shrink-0"></i>
+                <div>
+                    <p class="text-xs font-black uppercase text-neo-purple">Ответственный руководитель центра</p>
+                    <p class="font-black">{{ event.responsible_leader }}</p>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if event.description %}
+            <div class="border-t-2 border-b-2 border-dashed border-gray-300 py-6 mb-8">
+                <h3 class="font-black uppercase text-sm text-gray-500 mb-3">Описание мероприятия</h3>
+                <pre class="whitespace-pre-wrap font-sans text-gray-800 leading-relaxed">{{ event.description }}</pre>
+            </div>
+            {% endif %}
+
+            <div class="flex flex-col sm:flex-row gap-4 items-start sm:items-center mb-8">
+                {% if session.logged_in and session.role == 'student' %}
+                {% if is_registered %}
+                <form method="POST" action="{{ url_for('event_unregister', event_id=event.id) }}">
+                    <button type="submit"
+                            class="bg-neo-pink text-white border-2 border-black px-8 py-3 font-black uppercase shadow-hard hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all">
+                        <i class="fas fa-times mr-2"></i> Отменить запись
+                    </button>
+                </form>
+                <span class="font-mono text-sm text-neo-green font-bold">
+                        <i class="fas fa-check-circle mr-1"></i> Вы записаны!
+                    </span>
+                {% else %}
+                <form method="POST" action="{{ url_for('event_register', event_id=event.id) }}" class="mt-8 space-y-4">
+                    <div class="bg-gray-100 p-4 border-2 border-black rounded-2xl">
+                        <label class="block font-black uppercase text-xs mb-2">Выберите вашу роль:</label>
+                        <select name="role"
+                                class="w-full bg-white border-2 border-black p-2 font-bold rounded-xl focus:outline-none">
+                            <option value="viewer">Зритель (1 балл)</option>
+                            <option value="volunteer">Волонтер (3 балла)</option>
+                            <option value="participant">Участник (5 баллов)</option>
+                        </select>
+                    </div>
+                    <button type="submit"
+                            class="w-full bg-neo-purple text-white border-4 border-black p-4 rounded-2xl font-black uppercase shadow-hard hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all">
+                        Подтвердить участие
+                    </button>
+                </form>
+                {% endif %}
+                {% elif not session.logged_in %}
+                <a href="{{ url_for('login') }}"
+                   class="bg-neo-yellow border-2 border-black px-8 py-3 font-black uppercase shadow-hard hover:shadow-none transition-all">
+                    <i class="fas fa-sign-in-alt mr-2"></i> Войдите, чтобы записаться
+                </a>
+                {% endif %}
+
+                {% if session.role == 'admin' or session.role == 'leader' %}
+                <a href="{{ url_for('edit_event', event_id=event.id) }}"
+                   class="bg-white border-2 border-black px-6 py-3 font-black uppercase shadow-hard hover:bg-neo-yellow hover:shadow-none transition-all">
+                    <i class="fas fa-edit mr-2"></i> Редактировать
+                </a>
+                {% endif %}
+            </div>
+
+            <div class="border-t-4 border-black pt-6">
+                <h3 class="font-black uppercase text-xl mb-4 flex items-center gap-2">
+                    <i class="fas fa-users text-neo-purple"></i>
+                    Записались
+                    <span class="bg-neo-black text-white px-2 py-0.5 text-sm font-mono ml-2">
+                        {{ event.registrations|length }}
+                    </span>
+                </h3>
+
+                {% if event.registrations %}
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+                    {% for reg in event.registrations %}
+                    <div class="flex items-center justify-between bg-gray-50 border-2 border-black p-3 mb-2">
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 bg-neo-purple text-white flex items-center justify-center rounded-full border-2 border-black shrink-0 text-xs font-black">
+                                {{ reg.user.fio[0] }}
+                            </div>
+                            <div>
+                                <p class="font-bold text-sm leading-tight">{{ reg.user.fio }}</p>
+                                <p class="text-xs font-mono text-gray-500">{{ reg.user.class_ }}</p>
+                                <p class="text-xs font-mono text-gray-500">{{ {"viewer": "зритель",
+                                    "volunteer": "волонтёр",
+                                    "participant": "участник"}[reg.role] }}</p>
+                            </div>
+                        </div>
+                        {% if session.role in ['admin', 'leader'] %}
+                        <div>
+                            {% if reg.is_confirmed %}
+                            <span class="text-neo-green font-black text-xs uppercase">
+                <i class="fas fa-check-circle"></i> Подтверждено
+            </span>
+                            {% else %}
+                            <form action="{{ url_for('confirm_participation', reg_id=reg.id) }}" method="POST">
+                                <button type="submit"
+                                        class="bg-neo-yellow border-2 border-black px-3 py-1 text-[10px] font-black uppercase hover:bg-black hover:text-white transition-all">
+                                    Начислить баллы
+                                </button>
+                            </form>
+                            {% endif %}
+                        </div>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <div class="border-2 border-dashed border-gray-300 p-8 text-center opacity-60">
+                    <i class="fas fa-user-slash text-3xl mb-2 text-gray-400"></i>
+                    <p class="font-mono font-bold text-gray-500">Пока никто не записался</p>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

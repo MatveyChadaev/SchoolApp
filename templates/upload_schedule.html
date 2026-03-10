@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Загрузка расписания{% endblock %}
+
+{% block content %}
+<div class="max-w-2xl mx-auto py-12 px-4">
+    <div class="bg-white border-4 border-black p-8 shadow-hard relative">
+        <div class="absolute -top-5 -left-5 bg-neo-green text-black font-black p-3 border-4 border-black transform -rotate-6">CSV IMPORT</div>
+
+        <h2 class="text-3xl font-black uppercase mb-8 border-b-4 border-black pb-4 mt-4">Обновить расписание</h2>
+
+        <form method="POST" enctype="multipart/form-data" class="space-y-8">
+            <div class="space-y-2">
+                <label class="block font-black uppercase text-sm tracking-widest">1. Выберите класс</label>
+                <select name="class_name" required class="w-full border-4 border-black p-4 font-black bg-neo-yellow/10 focus:bg-neo-yellow outline-none appearance-none cursor-pointer">
+                    <option value="">-- ВЫБРАТЬ ИЗ СПИСКА --</option>
+                    {% for class_ in classes %}
+                        <option value="{{ class_ }}">{{ class_ }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="space-y-2">
+                <label class="block font-black uppercase text-sm tracking-widest">2. Файл данных (.csv)</label>
+                <div class="border-4 border-dashed border-black p-6 bg-gray-50 text-center relative group">
+                    <input type="file" name="schedule_file" accept=".csv" required class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10">
+                    <div class="space-y-2">
+                        <i class="fas fa-cloud-upload-alt text-4xl mb-2 group-hover:scale-110 transition-transform"></i>
+                        <p class="font-bold uppercase text-xs">Перетащите файл или кликните здесь</p>
+                    </div>
+                </div>
+                <div class="bg-neo-black text-neo-green p-3 font-mono text-[10px] mt-2 border-2 border-black">
+                    ФОРМАТ: День,Урок1,Урок2,Урок3...
+                </div>
+            </div>
+
+            <div class="flex gap-4 pt-4">
+                <button type="submit" class="flex-1 bg-neo-black text-white border-4 border-black py-4 font-black uppercase shadow-hard hover:bg-neo-green hover:text-black hover:shadow-none transition-all">Загрузить</button>
+                <a href="{{ url_for('schedule') }}" class="flex-1 bg-white border-4 border-black py-4 font-black uppercase text-center hover:bg-gray-100 transition-colors">Отмена</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

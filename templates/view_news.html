@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}Новость: {{ news.title }}{% endblock %}
+
+{% block content %}
+<script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: { 'neo-yellow': '#FFDE59', 'neo-purple': '#A663CC', 'neo-green': '#00F5D4', 'neo-pink': '#FF6B6B', 'neo-black': '#1a1a1a' },
+                boxShadow: { 'hard': '5px 5px 0px 0px #000000', 'hard-hover': '2px 2px 0px 0px #000000' }
+            }
+        }
+    }
+</script>
+
+<div class="max-w-4xl mx-auto py-8 px-4 font-sans">
+    <div class="bg-white border-4 border-black shadow-[10px_10px_0px_0px_#000000] p-6 md:p-12 rounded-xl relative">
+        <div class="absolute top-0 right-10 w-16 h-8 bg-neo-yellow border-2 border-black border-t-0 border-r-0 transform -rotate-6 opacity-80"></div>
+        <p class="font-mono text-xs text-gray-700 mb-6 bg-gray-100 border border-black px-2 py-1 inline-block transform -rotate-1">
+            <i class="fa-solid fa-clock mr-1 text-neo-purple"></i>
+            Опубликовано: {{ news.publish_date.strftime('%d.%m.%Y %H:%M') }}
+        </p>
+
+        <h1 class="text-4xl md:text-6xl font-black uppercase tracking-tight mb-8 leading-tight">
+            {{ news.title }}
+        </h1>
+
+        <div class="news-item border-t-4 border-b-4 border-dashed border-gray-300 py-6 mb-10">
+            <pre style="white-space: pre-wrap" class="news-content text-lg leading-relaxed font-medium">
+                {{ news.content }}
+            </pre>
+        </div>
+
+        <div class="flex justify-between items-center border-t-2 border-neo-pink pt-4">
+            <p class="font-mono text-sm text-gray-500">
+                #школьные_новости #edu_z
+            </p>
+
+            <a href="/news"
+               class="inline-block bg-neo-black text-white px-6 py-2 font-bold rounded shadow-hard-hover hover:bg-neo-purple hover:shadow-hard hover:-translate-y-0.5 active:shadow-none active:translate-y-0 transition-all border-2 border-black text-sm">
+                <i class="fa-solid fa-arrow-left mr-2"></i> Назад к ленте
+            </a>
+        </div>
+
+        <div class="absolute bottom-4 left-4 w-4 h-4 border-2 border-black rounded-full bg-neo-green transform rotate-12"></div>
+        <div class="absolute bottom-6 right-4 w-4 h-4 border-2 border-black rounded-full bg-neo-yellow transform -rotate-12"></div>
+
+    </div>
+
+</div>
+{% endblock %}

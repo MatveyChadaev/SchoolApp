@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Редактирование ученика{% endblock %}
+
+{% block content %}
+<div class="max-w-xl mx-auto py-12 px-4">
+    <div class="bg-white border-4 border-black p-8 shadow-hard relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-16 h-16 bg-neo-yellow border-l-4 border-b-4 border-black flex items-center justify-center">
+            <i class="fas fa-user-edit text-2xl"></i>
+        </div>
+
+        <h2 class="text-3xl font-black uppercase mb-8 pr-12">Редактировать профиль</h2>
+
+        <form method="POST" class="space-y-6">
+            <div class="group">
+                <label class="block font-black uppercase text-xs mb-1">ФИО Ученика</label>
+                <input type="text" name="fio" value="{{ student.fio }}" required class="w-full border-4 border-black p-3 font-bold focus:bg-neo-green outline-none">
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <label class="block font-black uppercase text-xs mb-1">Логин</label>
+                    <input type="text" name="username" value="{{ student.username }}" required class="w-full border-4 border-black p-3 font-mono focus:bg-neo-green outline-none">
+                </div>
+                <div>
+                    <label class="block font-black uppercase text-xs mb-1">Класс</label>
+                    <input type="text" name="class" value="{{ student.class_ }}" required class="w-full border-4 border-black p-3 font-mono font-bold focus:bg-neo-green outline-none">
+                </div>
+            </div>
+
+            <div class="bg-neo-pink/10 border-2 border-neo-pink p-4">
+                <label class="block font-black uppercase text-xs mb-1 text-neo-pink">Новый пароль</label>
+                <input type="password" name="password" placeholder="Оставьте пустым для сохранения" class="w-full border-2 border-black p-2 font-mono outline-none focus:bg-white">
+            </div>
+
+            <div class="flex gap-4 pt-4">
+                <button type="submit" class="flex-1 bg-neo-black text-white border-4 border-black py-4 font-black uppercase shadow-hard hover:bg-neo-green hover:text-black transition-all">Сохранить</button>
+                <a href="{{ url_for('admin_students') }}" class="flex-1 bg-white border-4 border-black py-4 font-black uppercase text-center hover:bg-gray-100 transition-colors">Отмена</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

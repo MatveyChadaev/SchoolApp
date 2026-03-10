@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Управление новостями{% endblock %}
+
+{% block content %}
+<div class="max-w-6xl mx-auto py-10 px-4">
+    <div class="inline-block bg-neo-yellow text-black px-6 py-2 border-4 border-black shadow-hard transform rotate-1 mb-10">
+        <h2 class="text-3xl font-black uppercase tracking-widest">Админ-панель: Новости</h2>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+        <div class="bg-white border-4 border-black p-8 shadow-hard h-fit">
+            <h3 class="text-2xl font-black uppercase mb-6 underline decoration-neo-purple decoration-4">Добавить новость</h3>
+            <form method="POST" class="space-y-6">
+                <div>
+                    <label class="block font-black uppercase text-sm mb-2">Заголовок</label>
+                    <input type="text" name="title" required class="w-full border-4 border-black p-3 font-mono focus:bg-neo-green outline-none transition-colors">
+                </div>
+                <div>
+                    <label class="block font-black uppercase text-sm mb-2">Текст новости</label>
+                    <textarea name="content" rows="6" required class="w-full border-4 border-black p-3 font-mono focus:bg-neo-green outline-none transition-colors"></textarea>
+                </div>
+                <button type="submit" class="w-full bg-neo-black text-white font-black py-4 border-4 border-black hover:bg-neo-purple hover:shadow-none shadow-hard transition-all uppercase tracking-widest">Опубликовать</button>
+            </form>
+        </div>
+
+        <div class="space-y-6">
+            <h3 class="text-2xl font-black uppercase mb-4">Архив публикаций</h3>
+            {% for news in news_list %}
+            <div class="bg-white border-4 border-black p-6 shadow-hard hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all">
+                <div class="flex justify-between items-start mb-4">
+                    <h4 class="font-black text-xl uppercase">{{ news.title }}</h4>
+                    <span class="bg-neo-pink text-white px-2 py-1 border-2 border-black text-xs font-mono">{{ news.publish_date.strftime('%d.%m.%y') }}</span>
+                </div>
+                <div class="flex gap-4">
+                    <a href="{{ url_for('edit_news', news_id=news.id) }}" class="flex-grow text-center bg-neo-green border-2 border-black py-2 font-bold hover:bg-black hover:text-white transition-colors">ИЗМЕНИТЬ</a>
+                    <a href="{{ url_for('delete_news', news_id=news.id) }}" onclick="return confirm('Удалить?')" class="px-4 bg-white border-2 border-black py-2 hover:bg-red-500 hover:text-white transition-colors text-center"><i class="fas fa-trash"></i></a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

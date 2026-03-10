@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+{% block title %}Управление руководителями{% endblock %}
+
+{% block content %}
+<div class="max-w-6xl mx-auto py-10 px-4">
+    <div class="inline-block bg-neo-purple text-white px-6 py-2 border-4 border-black shadow-hard transform -rotate-1 mb-10">
+        <h2 class="text-3xl font-black uppercase tracking-widest">Руководители центров</h2>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+
+        <div class="flex flex-col gap-8">
+
+            <div class="bg-white border-4 border-black p-8 shadow-hard">
+                <h3 class="text-xl font-black uppercase mb-6 flex items-center gap-2">
+                    <span class="bg-neo-green border-2 border-black w-8 h-8 flex items-center justify-center text-sm">+</span>
+                    Создать аккаунт руководителя
+                </h3>
+                <form method="POST" class="space-y-4">
+                    <input type="hidden" name="action" value="create">
+                    <div>
+                        <label class="block font-black uppercase text-xs mb-1">ФИО</label>
+                        <input type="text" name="fio" required placeholder="Фамилия Имя Отчество"
+                               class="w-full border-4 border-black p-3 font-bold focus:bg-neo-green outline-none transition-colors">
+                    </div>
+                    <div>
+                        <label class="block font-black uppercase text-xs mb-1">Центр</label>
+                        <select name="center_name" required
+                                class="w-full border-4 border-black p-3 font-bold bg-white focus:bg-neo-green outline-none">
+                            <option value="">— Выберите центр —</option>
+                            {% for center in centers %}
+                            <option value="{{ center.name }}">{{ center.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <button type="submit"
+                            class="w-full bg-neo-black text-white font-black py-4 border-4 border-black hover:bg-neo-green hover:text-black hover:shadow-none shadow-hard transition-all uppercase">
+                        Создать аккаунт
+                    </button>
+                    <p class="text-xs font-mono text-gray-500">Логин и пароль будут сгенерированы автоматически и показаны в уведомлении.</p>
+                </form>
+            </div>
+
+            <div class="bg-white border-4 border-black p-8 shadow-hard">
+                <h3 class="text-xl font-black uppercase mb-6 flex items-center gap-2">
+                    <span class="bg-neo-yellow border-2 border-black w-8 h-8 flex items-center justify-center text-sm">↑</span>
+                    Назначить из учеников
+                </h3>
+                <form method="POST" class="space-y-4">
+                    <input type="hidden" name="action" value="assign">
+                    <div>
+                        <label class="block font-black uppercase text-xs mb-1">Ученик</label>
+                        <select name="user_id" required
+                                class="w-full border-4 border-black p-3 font-bold bg-white focus:bg-neo-yellow outline-none">
+                            <option value="">— Выберите ученика —</option>
+                            {% for student in students %}
+                            <option value="{{ student.id }}">{{ student.fio }} ({{ student.class_ }})</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block font-black uppercase text-xs mb-1">Центр</label>
+                        <select name="center_name" required
+                                class="w-full border-4 border-black p-3 font-bold bg-white focus:bg-neo-yellow outline-none">
+                            <option value="">— Выберите центр —</option>
+                            {% for center in centers %}
+                            <option value="{{ center.name }}">{{ center.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <button type="submit"
+                            class="w-full bg-neo-yellow border-4 border-black font-black py-4 hover:bg-neo-black hover:text-white hover:shadow-none shadow-hard transition-all uppercase">
+                        Назначить руководителем
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div>
+            <h3 class="text-2xl font-black uppercase mb-6">Действующие руководители</h3>
+
+            {% if leaders %}
+            <div class="space-y-4">
+                {% for leader in leaders %}
+                <div class="bg-white border-4 border-black p-5 shadow-hard hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all">
+                    <div class="flex justify-between items-start mb-3">
+                        <div>
+                            <h4 class="font-black text-lg uppercase leading-tight">{{ leader.fio }}</h4>
+                            <div class="flex items-center gap-2 mt-1">
+                                <span class="bg-neo-purple text-white px-2 py-0.5 text-xs font-bold border border-black">
+                                    {{ leader.center_name or '—' }}
+                                </span>
+                                <span class="font-mono text-xs text-gray-500">@{{ leader.username }}</span>
+                            </div>
+                        </div>
+                        <span class="bg-neo-green border-2 border-black px-2 py-1 text-xs font-black uppercase">
+                            LEADER
+                        </span>
+                    </div>
+                    <form method="POST">
+                        <input type="hidden" name="action" value="revoke">
+                        <input type="hidden" name="user_id" value="{{ leader.id }}">
+                        <button type="submit"
+                                onclick="return confirm('Снять права руководителя?')"
+                                class="w-full bg-white border-2 border-black py-2 font-bold text-sm hover:bg-neo-pink hover:text-white hover:border-neo-pink transition-colors uppercase">
+                            <i class="fas fa-user-minus mr-2"></i> Снять права
+                        </button>
+                    </form>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="border-4 border-dashed border-black p-10 text-center opacity-50">
+                <i class="fas fa-users-slash text-4xl mb-3 text-gray-400"></i>
+                <p class="font-black uppercase">Нет руководителей центров</p>
+            </div>
+            {% endif %}
+        </div>
+
+    </div>
+
+    <div class="mt-8">
+        <a href="{{ url_for('admin_students') }}"
+           class="inline-block bg-white border-2 border-black px-4 py-2 font-bold hover:bg-neo-purple hover:text-white transition-colors">
+            ← К списку учеников
+        </a>
+    </div>
+</div>
+{% endblock %}

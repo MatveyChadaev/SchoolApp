@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Контакты{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto py-10 px-4">
+    <div class="inline-block bg-neo-purple text-white px-6 py-2 border-4 border-black shadow-hard transform -rotate-1 mb-10">
+        <h2 class="text-3xl font-black uppercase tracking-wide">На связи</h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-white border-4 border-black p-6 shadow-hard hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all">
+            <h3 class="font-black uppercase text-xl mb-4 flex items-center gap-2">
+                <i class="fas fa-map-marker-alt text-neo-pink"></i> Адрес
+            </h3>
+            <p class="font-mono font-bold">г. Казань, ул. Абсалямова, д. 29а</p>
+        </div>
+
+        <div class="bg-neo-yellow border-4 border-black p-6 shadow-hard">
+            <h3 class="font-black uppercase text-xl mb-4 flex items-center gap-2">
+                <i class="fas fa-phone text-black"></i> Телефоны
+            </h3>
+            <ul class="font-mono space-y-2">
+                <li><span class="bg-black text-white px-1">ПРИЕМНАЯ:</span> +7 (843) 590-66-11</li>
+                <li><span class="bg-black text-white px-1">ВАХТА:</span> +7 (495) 123-45-68</li>
+            </ul>
+        </div>
+
+        <div class="bg-neo-green border-4 border-black p-6 shadow-hard md:col-span-2">
+            <h3 class="font-black uppercase text-xl mb-4 flex items-center gap-2">
+                <i class="fas fa-clock text-black"></i> Режим работы
+            </h3>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 font-mono font-bold">
+                <div class="border-2 border-black p-2 bg-white">ПН-ПТ: 8:00 - 18:00</div>
+                <div class="border-2 border-black p-2 bg-white">СБ: 9:00 - 15:00</div>
+                <div class="border-2 border-black p-2 bg-white text-neo-pink">ВС: ВЫХОДНОЙ</div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

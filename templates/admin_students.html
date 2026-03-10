@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block title %}Управление учениками{% endblock %}
+
+{% block content %}
+<div class="max-w-6xl mx-auto py-8 px-4">
+    <h2 class="text-4xl font-black uppercase mb-8 border-b-8 border-neo-yellow inline-block">Панель управления:
+        Ученики</h2>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div class="space-y-8">
+            <div class="bg-white border-4 border-black p-6 shadow-hard">
+                <h3 class="font-black uppercase mb-4 text-neo-purple underline decoration-4">Добавить ученика</h3>
+                <form method="POST" class="space-y-4">
+                    <input type="text" name="fio" placeholder="ФИО" required
+                           class="w-full border-2 border-black p-2 font-mono focus:bg-neo-yellow outline-none">
+                    <input type="text" name="class" placeholder="Класс (напр. 10А)" required
+                           class="w-full border-2 border-black p-2 font-mono focus:bg-neo-yellow outline-none">
+                    <button type="submit"
+                            class="w-full bg-neo-black text-white font-bold py-2 border-2 border-black hover:bg-neo-green hover:text-black transition-all shadow-hard-hover">
+                        ДОБАВИТЬ +
+                    </button>
+                </form>
+            </div>
+
+            <a href="{{ url_for('students_passwords') }}"
+               class="block text-center bg-neo-pink text-white font-black py-4 border-4 border-black shadow-hard hover:shadow-none transition-all uppercase">
+                Посмотреть пароли
+            </a>
+        </div>
+
+        <div class="lg:col-span-2 bg-white border-4 border-black shadow-hard overflow-hidden">
+            <table class="w-full text-left border-collapse">
+                <thead class="bg-neo-black text-white uppercase font-black">
+                <tr>
+                    <th class="p-4 border-b-4 border-black">ФИО</th>
+                    <th class="p-4 border-b-4 border-black">Класс</th>
+                    <th class="p-4 border-b-4 border-black text-center">Действия</th>
+                </tr>
+                </thead>
+                <tbody class="font-mono font-bold">
+                {% for student in students %}
+                <tr class="border-b-2 border-black hover:bg-gray-50 transition-colors">
+                    <td class="p-4">{{ student.fio }}</td>
+                    <td class="p-4"><span class="bg-neo-yellow px-2 border border-black">{{ student.class_ }}</span>
+                    </td>
+                    <td class="p-4 flex gap-2 justify-center">
+                        <a href="{{ url_for('student_achievements', student_id=student.id) }}"
+                           class="inline-flex items-center justify-center w-10 h-10 border-2 border-black bg-white hover:bg-neo-yellow shadow-hard-hover transition-all"
+                           title="Достижения">
+                            <i class="fas fa-trophy"></i>
+                        </a>
+                        <a href="{{ url_for('edit_student', student_id=student.id) }}"
+                           class="p-2 border-2 border-black bg-white hover:bg-neo-purple hover:text-white transition-all shadow-hard-hover">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        <a href="{{ url_for('delete_student', student_id=student.id) }}"
+                           onclick="return confirm('Удалить?')"
+                           class="p-2 border-2 border-black bg-white hover:bg-neo-pink hover:text-white transition-all shadow-hard-hover">
+                            <i class="fas fa-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

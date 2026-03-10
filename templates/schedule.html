@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block title %}Расписание уроков{% endblock %}
+
+{% block content %}
+<script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: { 'neo-yellow': '#FFDE59', 'neo-purple': '#A663CC', 'neo-green': '#00F5D4', 'neo-pink': '#FF6B6B', 'neo-black': '#1a1a1a' },
+                boxShadow: { 'hard': '5px 5px 0px 0px #000000' }
+            }
+        }
+    }
+</script>
+
+<div class="max-w-7xl mx-auto py-8 px-4 font-sans">
+    <div class="inline-block bg-neo-purple text-white px-6 py-2 border-4 border-neo-black shadow-hard transform -rotate-1 mb-10">
+        <h2 class="text-3xl md:text-4xl font-black uppercase tracking-wide">
+            МАТРИЦА РАСПИСАНИЯ
+        </h2>
+    </div>
+
+    <div class="mb-8 p-4 bg-neo-green text-neo-black border-2 border-black font-mono font-bold text-lg inline-block shadow-hard">
+        Класс: {{ class_name|default('Неизвестен') }}
+    </div>
+
+    {% if schedule %}
+        <div class="schedule grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            {% for day, lessons in schedule.items() %}
+                <div class="day-card bg-white border-4 border-neo-black rounded-none shadow-hard p-4 relative overflow-hidden group">
+
+                    <div class="absolute inset-0 bg-neo-yellow opacity-10 group-hover:opacity-20 transition-opacity"></div>
+
+                    <h3 class="relative z-10 text-2xl font-black uppercase mb-4 pb-2 border-b-4 border-dashed border-neo-pink text-neo-purple group-hover:text-neo-black transition-colors">
+                        <i class="fa-solid fa-calendar-day mr-2"></i> {{ day }}
+                    </h3>
+
+                    <ol class="space-y-3 relative z-10">
+                        {% for lesson in lessons %}
+                            <li class="lesson-item bg-gray-50 p-3 border-2 border-black font-mono text-sm shadow-hard-hover hover:bg-neo-green hover:shadow-hard active:translate-y-1 active:shadow-none transition-all duration-100 flex items-center justify-between">
+                                <span class="font-bold">{{ loop.index }}.</span>
+                                <span class="flex-grow ml-3 text-left">{{ lesson }}</span>
+                                <span class="text-xs bg-neo-pink text-white px-2 py-0.5 border border-black transform -rotate-3 hidden group-hover:inline-block">CLASS</span>
+                            </li>
+                        {% endfor %}
+                    </ol>
+                </div>
+            {% endfor %}
+
+        </div>
+
+    {% else %}
+        <div class="alert bg-neo-pink text-white border-4 border-black p-6 font-black text-xl text-center shadow-hard rounded-none">
+            <i class="fa-solid fa-triangle-exclamation mr-3"></i>
+            [WARNING] Расписание для вашего класса пока не загружено. Обратитесь к администратору.
+        </div>
+    {% endif %}
+
+    {% if session.role == 'admin' %}
+    <div class="mt-12 text-center">
+        <a href="{{ url_for('admin_schedules') }}"
+           class="inline-block bg-neo-yellow text-neo-black font-black py-3 px-8 border-4 border-black uppercase shadow-hard hover:bg-neo-pink hover:text-white transition-all transform hover:-translate-y-1">
+            <i class="fa-solid fa-lock mr-2"></i> РЕДАКТИРОВАТЬ РАСПИСАНИЯ
+        </a>
+    </div>
+    {% endif %}
+
+</div>
+{% endblock %}
