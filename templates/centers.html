@@ -16,11 +16,11 @@
 
 <div class="max-w-7xl mx-auto py-8 px-4 font-sans">
     <div class="mb-12 text-center">
-        <h2 class="text-4xl md:text-6xl font-black uppercase inline-block relative z-10">
+        <h2 class="text-4xl md:text-6xl text-gray-300 font-black uppercase inline-block relative z-10">
             Руководство
-            <span class="absolute bottom-2 left-0 w-full h-4 bg-neo-green -z-10 transform -rotate-1"></span>
+            <!-- <span class="absolute bottom-2 left-0 w-full h-4 bg-[#99afff] z-10 transform -rotate-1"></span> -->
         </h2>
-        <p class="font-mono mt-2 text-gray-600 bg-white border border-black inline-block px-2">Выберите центр для просмотра информации</p>
+        <p class="lw-div font-mono mt-2 text-gray-600 inline-block px-2">Выберите центр для просмотра информации</p>
     </div>
 
     <div class="flex flex-col lg:flex-row gap-8 items-start">
@@ -30,10 +30,10 @@
             <a href="{{ url_for('centers', center=center.name) }}"
                class="group relative block transition-all duration-200 focus:outline-none">
 
-                <div class="absolute inset-0 bg-black rounded-lg transform translate-x-1 translate-y-1 transition-transform group-hover:translate-x-2 group-hover:translate-y-2"></div>
+                <div class="absolute inset-0 bg-black rounded-[2rem] transform translate-x-1 translate-y-1 transition-transform group-hover:translate-x-2 group-hover:translate-y-2"></div>
 
-                <div class="relative border-2 border-black rounded-lg p-4 font-bold flex justify-between items-center transition-transform transform group-hover:-translate-y-1
-                            {% if center == selected_center %} bg-neo-yellow text-black {% else %} bg-white text-gray-800 {% endif %}">
+                <div class="relative p-4 font-bold flex justify-between items-center transition-transform transform group-hover:-translate-y-1
+                            {% if center == selected_center %} lr-btn {% else %} lw-btn text-gray-800 {% endif %}">
                     <span class="uppercase tracking-wider text-sm">{{ center.name }}</span>
                     {% if center == selected_center %}
                         <i class="fa-solid fa-arrow-right"></i>
@@ -52,20 +52,20 @@
                 </div>
 
                 <div class="relative z-10 mb-8 pb-6 border-b-2 border-dashed border-gray-300">
-                    <span class="bg-neo-purple text-white px-3 py-1 font-mono text-xs font-bold border border-black mb-2 inline-block">ОТДЕЛЕНИЕ</span>
-                    <h3 class="text-3xl md:text-4xl font-black uppercase">{{ selected_center.name }}</h3>
+                    <span class="lb-div px-3 py-1 font-mono text-xs font-bold mb-2 inline-block text-gray-500">ОТДЕЛЕНИЕ</span>
+                    <h3 class="text-3xl text-gray-500 md:text-4xl font-black uppercase">{{ selected_center.name }}</h3>
                 </div>
 
                 <div class="bg-gray-50 p-6 rounded-xl border-2 border-black mb-10 relative">
-                    <div class="absolute -top-3 left-4 bg-white px-2 font-mono text-xs font-bold border border-black">ОПИСАНИЕ</div>
+                    <div class="absolute -top-3 left-4 bg-white px-2 font-mono text-xs font-bold border border-black text-[#4d74ff]">ОПИСАНИЕ</div>
                     <pre class="whitespace-pre-wrap font-mono text-sm leading-relaxed text-gray-700 font-medium" style="font-family: 'JetBrains Mono', monospace;">{{ selected_center.info }}</pre>
                 </div>
                 <div class="leaders-container space-y-12">
                     <div class="leader-card relative pl-4 md:pl-0">
                         <div class="absolute left-0 top-0 bottom-0 w-1 bg-black md:hidden"></div>
 
-                        <h4 class="text-2xl font-black uppercase mb-6 flex items-center gap-3">
-                            <span class="bg-neo-pink w-8 h-8 flex items-center justify-center border-2 border-black text-white text-sm rounded-full">1</span>
+                        <h4 class="text-2xl font-black text-[#ff824d] uppercase mb-6 flex items-center gap-3">
+                            <span class="bg-neo-pink w-8 h-8 flex items-center justify-center border-2 border-black text-neo-black text-sm rounded-full">1</span>
                             Руководитель
                         </h4>
 
@@ -83,14 +83,14 @@
 
                             <div class="flex-grow">
                                 {% if leaders.leader %}
-                                    <h5 class="text-2xl font-black mb-1">{{ leaders.leader.name }}</h5>
-                                    <p class="font-mono text-neo-purple font-bold mb-4">{{ leaders.leader.position }}</p>
+                                    <h5 class="text-2xl text-[#ff824d] font-black mb-1">{{ leaders.leader.name }}</h5>
+                                    <p class="font-mono text-[#ffb494] font-bold mb-4">{{ leaders.leader.position }}</p>
 
                                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                                        <div class="bg-gray-50 p-2 border border-black rounded flex items-center gap-2">
+                                        <div class="bg-gray-50 p-2 border border-black text-[#ff824d] rounded-xl flex items-center gap-2">
                                             <i class="fa-solid fa-envelope"></i> {{ leaders.leader.email }}
                                         </div>
-                                        <div class="bg-gray-50 p-2 border border-black rounded flex items-center gap-2">
+                                        <div class="bg-gray-50 p-2 border border-black text-[#ff824d] rounded-xl flex items-center gap-2">
                                             <i class="fa-solid fa-circle-info"></i> {{ leaders.leader.bio }}
                                         </div>
                                     </div>
@@ -103,8 +103,8 @@
 
                     {% for deputy in leaders.deputies %}
                     <div class="leader-card relative pl-4 md:pl-0">
-                         <h4 class="text-xl font-bold uppercase mb-4 flex items-center gap-3 opacity-80">
-                            <span class="bg-gray-800 w-6 h-6 flex items-center justify-center border border-black text-white text-xs rounded-full">2</span>
+                         <h4 class="text-xl font-bold uppercase mb-4 flex items-center gap-3 text-[#99afff] opacity-80">
+                            <span class="bg-gray-800 w-6 h-6 flex items-center justify-center border border-black text-xs rounded-full">2</span>
                             Заместитель
                         </h4>
 
@@ -119,8 +119,8 @@
                                     {% endif %}
                                 </div>
                                 <div class="text-center md:text-left">
-                                    <h5 class="text-lg font-bold">{{ deputy.name }}</h5>
-                                    <p class="text-xs font-mono mb-2">{{ deputy.position }}</p>
+                                    <h5 class="text-lg text-[#4d74ff] font-bold">{{ deputy.name }}</h5>
+                                    <p class="text-xs font-mono text-[#99afff] mb-2">{{ deputy.position }}</p>
                                     <p class="text-sm text-gray-600 mb-1"><i class="fa-solid fa-envelope mr-1"></i> {{ deputy.email }}</p>
                                     <p class="text-xs text-gray-500 italic">{{ deputy.bio }}</p>
                                 </div>
@@ -133,7 +133,7 @@
 
                 </div>
                 <div class="mt-12 text-center">
-                    <a href="{{ url_for('download_gazette') }}" class="inline-flex items-center gap-3 bg-neo-black text-white px-8 py-4 font-black uppercase text-lg rounded-full border-4 border-neo-green hover:bg-neo-green hover:text-black hover:scale-105 transition-all shadow-hard">
+                    <a href="{{ url_for('download_gazette') }}" class="lb-btn inline-flex items-center gap-3 px-8 py-4 font-black uppercase text-lg hover:scale-105 transition-all shadow-hard">
                         <i class="fa-solid fa-file-pdf"></i>
                         Скачать школьную газету
                     </a>
