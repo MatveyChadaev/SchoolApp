@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}Последние новости{% endblock %}
+
+{% block content %}
+<script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: { 'neo-yellow': '#FFDE59', 'neo-purple': '#A663CC', 'neo-green': '#00F5D4', 'neo-pink': '#FF6B6B', 'neo-black': '#1a1a1a' },
+                boxShadow: { 'hard': '5px 5px 0px 0px #000000' }
+            }
+        }
+    }
+</script>
+
+<div class="max-w-4xl mx-auto py-8 px-4 font-sans">
+    <div class="lb-div inline-block  px-6 py-2 transform rotate-1 mb-8 shadow-hard">
+        <h2 class="text-3xl font-mono font-bold uppercase tracking-widest">:: ШКОЛЬНЫЕ НОВОСТИ ::</h2>
+    </div>
+
+    <div class="space-y-6">
+        {% for news in news_list %}
+
+        <div class="news-item bg-white rounded-md border-4 border-neo-black shadow-[8px_8px_0px_0px_#ff824d] p-6 relative overflow-hidden group hover:shadow-[10px_10px_0px_0px_#ffb494] transition-all duration-300">
+            
+            <div class="absolute top-0 right-0 w-8 h-8 bg-[#ffb494] border-l-4 border-b-4 border-black group-hover:bg-[#ff824d] transition-colors"></div>
+
+            <h3 class="text-2xl text-gray-500 font-black uppercase mb-3 leading-snug">
+                {{ news.title }}
+            </h3>
+
+            <p class="news-date font-mono text-xs text-gray-500 mb-4 flex items-center gap-2">
+                <i class="fa-solid fa-calendar-alt text-[#ff824d]"></i>
+                {{ news.publish_date.strftime('%d.%m.%Y %H:%M') }}
+            </p>
+
+            <p class="news-content text-gray-700 mb-6 border-l-4 border-gray-300 pl-4 italic">
+                {{ news.content[:50:]+"..." }}
+            </p>
+
+            <a href=" {{ url_for('view_news', news_id=news.id) }}"
+               class="lr-btn read-more inline-block px-6 py-2 font-bold uppercase rounded-full border-2 transition-all">
+                Читать далее →
+            </a>
+        </div>
+        {% endfor %}
+
+        <div class="text-center font-mono text-gray-400 py-4 mt-8 border-t border-dashed border-gray-300">
+            ---  КОНЕЦ НОВОСТЕЙ ---
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+
+{% block title %}О школе{% endblock %}
+
+{% block content %}
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Space Grotesk', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        'neo-yellow': '#FFDE59',
+                        'neo-purple': '#A663CC',
+                        'neo-green': '#00F5D4',
+                        'neo-pink': '#FF6B6B',
+                        'neo-white': '#FFFFF0',
+                        'neo-black': '#1a1a1a',
+                    },
+                    boxShadow: {
+                        'hard': '5px 5px 0px 0px #000000',
+                        'hard-hover': '2px 2px 0px 0px #000000',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #fafafa;
+        }
+        .marker-highlight {
+            background: #ffb494;
+        }
+    </style>
+</head>
+<body class="text-neo-black p-4 md:p-8 min-h-screen flex flex-col font-sans">
+    <main class="max-w-6xl mx-auto w-full">
+        
+        <div class="mb-12 text-center relative">
+            <h1 class="text-5xl md:text-8xl font-black text-[#4d74ff] uppercase tracking-tight mb-2">
+                Гимназия <span class="text-[#ff824d]">№179</span>
+            </h1>
+            <p class="lb-div font-mono text-lg md:text-xl bg-white inline-block border-2 px-4 py-1 rotate-1">
+                Больше, чем просто школа
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+
+            <div class="md:col-span-7 flex flex-col gap-8">
+                
+                <div class="bg-white border-2 border-black shadow-hard p-6 md:p-8 rounded-xl relative">
+                    <i class="fa-solid fa-quote-right absolute top-4 right-4 text-6xl text-gray-100 -z-0"></i>
+                    <h2 class="text-3xl font-bold mb-4 uppercase border-b-4 border-[#ffb494] inline-block relative z-10">Кто мы?</h2>
+                    <p class="text-lg leading-relaxed font-medium relative z-10">
+                        Гимназия №179 — это <span class="marker-highlight">современное образовательное пространство</span>. Мы не просто учим формулы и правила, мы создаем среду, где каждый находит себя. Богатая история (несмотря на молодость!) и крутые традиции — это про нас.
+                    </p>
+                </div>
+                <div class="relative mt-4">
+                    <div class="w-32 h-8 bg-neo-black text-white font-mono text-sm flex items-center justify-center rounded-t-lg ml-4 border-x-2 border-t-2 border-black absolute -top-8 left-0">
+                        ИСТОРИЯ.txt
+                    </div>
+                    <div class="lb-div shadow-hard p-6 md:p-8 rounded-tl-none">
+                        <div class="flex items-start gap-4">
+                            <div class="bg-white border-2 border-black p-3 rounded-full shrink-0">
+                                <i class="fa-solid fa-flag-checkered text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-black uppercase mb-2">Старт пути</h3>
+                                <p class="font-mono text-sm leading-relaxed bg-white/50 p-3 border border-black rounded">
+                                    "Она открыла двери для первых своих учеников <br>
+                                    <strong class="bg-neo-yellow px-1">1 сентября 2015 года.</strong>"
+                                </p>
+                                <p class="mt-4 text-sm font-bold">
+                                    <i class="fa-solid fa-clock"></i> Уже 10 лет мы делаем мир умнее.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="md:col-span-5 flex flex-col gap-8">
+
+                <div class="shadow-hard p-6 md:p-8 rounded-xl transform md:rotate-2 hover:rotate-0 transition-transform duration-300 lr-div">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-2xl font-black uppercase">Наша Миссия</h2>
+                        <i class="fa-solid fa-bullseye text-3xl opacity-50"></i>
+                    </div>
+                    <p class="font-mono text-sm md:text-base leading-relaxed border-l-4 border-[#ff824d] pl-4">
+                        Мы стремимся создать условия для <span class="bg-black text-white px-1">всестороннего развития</span> личности каждого ученика, раскрытия его талантов и супер-способностей.
+                    </p>
+                    <div class="mt-6 flex gap-2">
+                        <span class="bg-white text-black border border-black px-2 py-1 text-xs font-bold rounded-full">#ТАЛАНТЫ</span>
+                        <span class="bg-white text-black border border-black px-2 py-1 text-xs font-bold rounded-full">#БУДУЩЕЕ</span>
+                    </div>
+                </div>
+
+                <div class="bg-neo-yellow border-2 border-black shadow-hard h-48 md:h-auto flex items-center justify-center rounded-xl relative overflow-hidden group flex-grow">
+                    <div class="absolute inset-0 opacity-10" style="background-image: repeating-linear-gradient(45deg, #000 0, #000 1px, transparent 0, transparent 50%); background-size: 10px 10px;"></div>
+
+                    <div class="text-center relative z-10 transform group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-camera-retro text-5xl mb-2"></i>
+                        <p class="font-mono text-xs uppercase font-bold bg-white px-2 border border-black">Фото школы</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="mt-12 bg-white border-2 border-black border-dashed p-8 text-center rounded-xl opacity-80 hover:opacity-100 transition-opacity">
+            <h3 class="font-bold text-xl mb-2">Хочешь стать частью истории?</h3>
+            <p class="text-gray-600 mb-4 font-mono text-sm">Присоединяйся к нам и создавай будущее вместе.</p>
+            <button class="lb-btn px-6 py-2 font-bold transition-colors">
+                Подать документы
+            </button>
+        </div>
+
+    </main>
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,164 @@
+{% extends "base.html" %}
+
+{% block title %}Главная страница{% endblock %}
+
+{% block content %}
+<script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                fontFamily: {
+                    sans: ['Space Grotesk', 'sans-serif'],
+                    mono: ['JetBrains Mono', 'monospace'],
+                },
+                colors: {
+                    'neo-yellow': '#FFDE59',
+                    'neo-purple': '#A663CC',
+                    'neo-green': '#00F5D4',
+                    'neo-pink': '#FF6B6B',
+                    'neo-white': '#FFFFF0',
+                    'neo-black': '#1a1a1a',
+                },
+                boxShadow: {
+                    'hard': '5px 5px 0px 0px #000000',
+                    'hard-hover': '2px 2px 0px 0px #000000',
+                    'hard-xl': '10px 10px 0px 0px #000000',
+                }
+            }
+        }
+    }
+</script>
+<style>
+    body {
+        background-color: #FAFAFA;
+    }
+    .neo-card {
+        transition: all 0.2s ease-in-out;
+    }
+    .neo-card:hover {
+        transform: translate(3px, 3px);
+        box-shadow: 2px 2px 0px 0px #000000;
+    }
+    .marquee-container {
+        overflow: hidden;
+        white-space: nowrap;
+    }
+    .marquee-content {
+        display: inline-block;
+        animation: marquee 20s linear infinite;
+    }
+    @keyframes marquee {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+    }
+</style>
+</head>
+<body class="text-neo-black p-4 md:p-8 min-h-screen flex flex-col font-sans selection:bg-neo-green">
+
+
+<div class="lr-div py-2 mb-8 shadow-hard rotate-1 overflow-hidden relative z-10">
+    <div class="marquee-container font-mono font-bold uppercase text-sm tracking-widest">
+        <div class="marquee-content">
+            {% if marquee_news %}
+            {% for news in marquee_news %}
+            {{ news.title }}&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;
+<!--            <span class="mx-8 text-neo-yellow"></span>-->
+            {% endfor %}
+            {% else %}
+            <span class="mx-8">• Добро пожаловать в Школьный Портал 179 •</span>
+            {% endif %}
+        </div>
+    </div>
+</div>
+<main class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12 flex-grow">
+    <div class="lg:col-span-8 flex flex-col gap-8">
+        <div class="lb-div shadow-hard-xl p-8 md:p-12 rounded-2xl relative overflow-hidden">
+            <div class="relative z-10">
+                <h1 class="text-5xl text-[#ffffff] md:text-7xl font-black leading-[0.9] mb-6 uppercase">
+                    Твой школьный<br>
+                    <span class=" text-[#ffb494] drop-shadow-[2px_2px_0px_rgba(0,0,0,1)]">портал</span>
+                </h1>
+                <p class="text-xl font-medium max-w-lg mb-8 bg-white/80 backdrop-blur-sm p-2 rounded border border-black inline-block">
+                    Расписание, оценки, новости и мемы (почти). Всё, что нужно для выживания в школе.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#"
+                       class="lr-btn px-8 py-4 text-xl font-bold shadow-hard hover:shadow-hard-hover hover:translate-x-[3px] hover:translate-y-[3px] transition-all rounded-lg flex items-center gap-2">
+                        Смотреть расписание <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="lb-div p-6 shadow-hard neo-card rounded-xl group cursor-pointer relative overflow-hidden">
+                <i class="fa-solid fa-calendar-check text-8xl absolute -right-4 -bottom-4 text-black opacity-10 group-hover:scale-110 transition-transform rotate-12"></i>
+                <h3 class="text-2xl text-[#ffffff] font-black uppercase mb-2">Расписание</h3>
+                <p class="font-mono text-sm text-[#ffffff] mb-4 border-l-2 border-white pl-3">
+                    Проверь, какой сейчас урок и в каком кабинете.
+                </p>
+                <div class="w-full bg-white border-2 border-black h-8 rounded-full overflow-hidden flex items-center px-1">
+                    <div class="bg-[#aaaaaa] h-4 w-2/3 rounded-full animate-pulse"></div>
+                </div>
+                <span class="text-xs font-bold mt-1 block text-right">Урок идет: 65%</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="lg:col-span-4 flex flex-col gap-6">
+        <div class="bg-white border-2 border-black shadow-hard p-6 rounded-xl text-center">
+            <div class="w-24 h-24 bg-[#ff824d] rounded-full border-2 border-black mx-auto mb-4 flex items-center justify-center overflow-hidden">
+                <i class="fa-regular fa-face-smile text-5xl text-white"></i>
+            </div>
+            <h3 class="font-black text-xl text-gray-700">Гость</h3>
+            <p class="text-gray-600 text-sm mb-4 font-mono">Ты не авторизован</p>
+            <button class="w-full lr-btn font-bold py-2 transition-colors rounded">
+                Войти в систему
+            </button>
+        </div>
+
+        <div class="bg-white border-2 border-black shadow-hard p-0 rounded-xl overflow-hidden">
+            <div class="bg-[#ff824d] border-b-2 border-black p-3 font-bold text-center uppercase tracking-wider">
+                <i class="fa-solid fa-phone"></i> Контакты
+            </div>
+            <div class="p-4 space-y-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-gray-200 rounded-full border-2 border-black flex-shrink-0"></div>
+                    <div>
+                        <p class="font-bold leading-tight">Наумова Э.В.</p>
+                        <p class="text-xs font-mono text-gray-500">Директор</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-gray-200 rounded-full border-2 border-black flex-shrink-0"></div>
+                    <div>
+                        <p class="font-bold leading-tight">Бурганов Э.А.</p>
+                        <p class="text-xs font-mono text-gray-500">Президент</p>
+                    </div>
+                </div>
+                <div class="mt-4 pt-4 text-center">
+                    <a href="#"
+                       class="lb-btn inline-block px-4 py-1 text-sm font-bold transition transform hover:-rotate-2">
+                        Тех. поддержка
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-yellow-100 border-2 border-black p-4 shadow-hard rotate-2 mt-4 relative">
+            <div class="w-4 h-4 rounded-full bg-red-500 border-2 border-black absolute -top-2 left-1/2 -translate-x-1/2"></div>
+            <p class="font-mono text-sm italic text-center">
+                "Ученье — свет, а неученье — чуть свет и на работу."
+            </p>
+        </div>
+
+    </div>
+</main>
+
+<footer class="mt-auto border-t-2 border-black pt-8 pb-4">
+    <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-sm font-mono opacity-60"><p>&copy;
+        2026 School Portal. Made with 💻 & ☕</p>
+</footer>
+
+</body>
+{% endblock %}
