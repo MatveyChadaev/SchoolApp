@@ -7,26 +7,26 @@
 
     <div class="mb-6">
         <a href="{{ url_for('events') }}"
-           class="inline-flex items-center gap-2 font-bold hover:text-neo-purple transition-colors">
-            <i class="fas fa-arrow-left"></i> Назад к календарю
+           class="inline-flex items-center gap-2 text-[#99afff] font-bold hover:text-[#ffb798] transition-colors">
+            <i class="fas fa-arrow-left "></i> Назад к календарю
         </a>
     </div>
 
-    <div class="bg-white border-4 border-black shadow-hard relative overflow-hidden">
+    <div class="lw-div shadow-hard relative overflow-hidden">
 
 
-        <div class="absolute top-0 right-0 w-24 h-24 bg-neo-yellow border-l-4 border-b-4 border-black flex items-center justify-center">
+        <div class="absolute top-0 right-0 w-24 h-24 bg-[#ffb494] border-l-2 border-b-2 border-black flex items-center justify-center">
             <i class="fas fa-calendar text-2xl"></i>
         </div>
 
         <div class="p-6 md:p-10">
-            <div class="flex flex-wrap gap-2 mb-4">
+            <div class="flex flex-wrap gap-2 mb-4 text-[#99afff]">
                 {% if event.center %}
-                <span class="bg-neo-purple text-white px-3 py-1 text-xs font-black uppercase border-2 border-black">
+                <span class="lb-div text-white px-3 py-1 text-xs font-black uppercase rounded-[4rem] border-2">
                     {{ event.center }}
                 </span>
                 {% else %}
-                <span class="bg-neo-pink text-white px-3 py-1 text-xs font-black uppercase border-2 border-black">
+                <span class="lr-div text-white px-3 py-1 text-xs font-black uppercase rounded-[4rem] border-2">
                     Общешкольное
                 </span>
                 {% endif %}
@@ -37,30 +37,30 @@
                 {{ event.title }}
             </h1>
 
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
-                <div class="bg-neo-green/20 border-2 border-black p-4">
-                    <p class="text-xs font-black uppercase text-gray-500 mb-1">Дата</p>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8 text-white">
+                <div class="lb-div p-4 border-[0.16rem]">
+                    <p class="text-xs font-black uppercase mb-1">Дата</p>
                     <p class="font-black text-lg">{{ event.date.strftime('%d.%m.%Y') }}</p>
                 </div>
                 {% if event.time %}
-                <div class="bg-neo-yellow/40 border-2 border-black p-4">
-                    <p class="text-xs font-black uppercase text-gray-500 mb-1">Время</p>
+                <div class="lm-div p-4 text-white">
+                    <p class="text-xs font-black uppercase mb-1">Время</p>
                     <p class="font-black text-lg">{{ event.time[:5] }}</p>
                 </div>
                 {% endif %}
                 {% if event.organizer %}
-                <div class="bg-neo-pink/20 border-2 border-black p-4">
-                    <p class="text-xs font-black uppercase text-gray-500 mb-1">Организатор</p>
-                    <p class="font-bold">{{ event.organizer }}</p>
+                <div class="lr-div border-[#FF9466] bg-[#ffb494] p-4 border-[0.16rem]">
+                    <p class="text-xs font-black uppercase mb-1">Организатор</p>
+                    <p class="font-bold text-lg">{{ event.organizer }}</p>
                 </div>
                 {% endif %}
             </div>
 
             {% if event.responsible_leader %}
-            <div class="bg-neo-purple/10 border-2 border-neo-purple p-4 mb-8 flex items-center gap-3">
-                <i class="fas fa-user-tie text-neo-purple text-2xl shrink-0"></i>
+            <div class="lw-div p-4 mb-8 flex items-center gap-3">
+                <i class="fas fa-user-tie text-[] text-2xl shrink-0"></i>
                 <div>
-                    <p class="text-xs font-black uppercase text-neo-purple">Ответственный руководитель центра</p>
+                    <p class="text-xs font-black uppercase text-gray">Ответственный руководитель центра</p>
                     <p class="font-black">{{ event.responsible_leader }}</p>
                 </div>
             </div>
@@ -78,11 +78,11 @@
                 {% if is_registered %}
                 <form method="POST" action="{{ url_for('event_unregister', event_id=event.id) }}">
                     <button type="submit"
-                            class="bg-neo-pink text-white border-2 border-black px-8 py-3 font-black uppercase shadow-hard hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all">
+                            class="lr-div px-8 py-3 font-black uppercase shadow-hard hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all">
                         <i class="fas fa-times mr-2"></i> Отменить запись
                     </button>
                 </form>
-                <span class="font-mono text-sm text-neo-green font-bold">
+                <span class="font-mono text-sm text-[#99afff] font-bold">
                         <i class="fas fa-check-circle mr-1"></i> Вы записаны!
                     </span>
                 {% else %}
@@ -97,7 +97,7 @@
                         </select>
                     </div>
                     <button type="submit"
-                            class="w-full bg-neo-purple text-white border-4 border-black p-4 rounded-2xl font-black uppercase shadow-hard hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all">
+                            class="w-full lb-div text-white p-4 rounded-2xl font-black uppercase shadow-hard hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all">
                         Подтвердить участие
                     </button>
                 </form>
@@ -119,9 +119,9 @@
 
             <div class="border-t-4 border-black pt-6">
                 <h3 class="font-black uppercase text-xl mb-4 flex items-center gap-2">
-                    <i class="fas fa-users text-neo-purple"></i>
+                    <i class="fas fa-users text-gray"></i>
                     Записались
-                    <span class="bg-neo-black text-white px-2 py-0.5 text-sm font-mono ml-2">
+                    <span class="lr-div border-[0.08rem] text-white px-2 py-0.5 text-sm font-mono ml-2">
                         {{ event.registrations|length }}
                     </span>
                 </h3>
@@ -131,7 +131,7 @@
                     {% for reg in event.registrations %}
                     <div class="flex items-center justify-between bg-gray-50 border-2 border-black p-3 mb-2">
                         <div class="flex items-center gap-3">
-                            <div class="w-8 h-8 bg-neo-purple text-white flex items-center justify-center rounded-full border-2 border-black shrink-0 text-xs font-black">
+                            <div class="w-8 h-8 bg-[#99afff] text-white flex items-center justify-center rounded-full border-2 border-black shrink-0 text-xs font-black">
                                 {{ reg.user.fio[0] }}
                             </div>
                             <div>
