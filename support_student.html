@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block title %}Чат с поддержкой{% endblock %}
+
+{% block content %}
+<script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: { 'neo-yellow': '#FFDE59', 'neo-purple': '#A663CC', 'neo-green': '#00F5D4', 'neo-pink': '#FF6B6B', 'neo-black': '#1a1a1a' },
+                boxShadow: { 'hard': '5px 5px 0px 0px #000000', 'hard-hover': '2px 2px 0px 0px #000000' }
+            }
+        }
+    }
+</script>
+
+<div class="max-w-3xl mx-auto py-8 px-4 font-sans">
+    <div class="lb-div mb-8 flex items-center justify-between p-4 border-4 shadow-hard">
+        <h2 class="text-xl md:text-2xl font-mono font-bold uppercase">
+            <i class="fa-solid fa-comments mr-2"></i>
+            ДИАЛОГ #{{ chat.id }}
+        </h2>
+        <span class="lr-div text-sm font-mono text-neo-black px-2 py-0.5 border border-black transform -rotate-1">
+            АКТИВЕН
+        </span>
+    </div>
+
+    <div class="bg-gray-100 border-4 border-neo-black shadow-hard rounded-none p-4 md:p-6 overflow-hidden">
+        <div class="chat-messages h-96 overflow-y-auto space-y-4 pr-2 mb-6 border-b-2 border-dashed border-gray-400 pb-4" id="chat-messages">
+
+            {% for msg in messages %}
+                {% if msg.sender_id == session.user_id %}
+                    <div class="lb-div message my-message max-w-[90%] md:max-w-[70%] ml-auto border-2 border-black p-3 shadow-hard-hover transform translate-x-1 hover:translate-x-0 transition-transform">
+                        <div class="message-header flex justify-between items-center mb-1 border-b border-black pb-1">
+                            <strong class="text-white font-black text-sm uppercase">ВЫ</strong>
+                            <span class="timestamp text-xs font-mono text-gray-700">{{ msg.timestamp.strftime('%H:%M') }}</span>
+                        </div>
+                        <div class="message-content text-gray-800">{{ msg.message }}</div>
+                    </div>
+                {% else %}
+                    <div class="lw-div message support-message max-w-[90%] md:max-w-[70%] mr-auto p-3 shadow-hard-hover transform translate-x-1 hover:translate-x-2 transition-transform">
+                        <div class="message-header flex justify-between items-center mb-1 border-b border-neo-purple pb-1">
+                            <strong class="text-[#ff824d] font-black text-sm uppercase">ПОДДЕРЖКА</strong>
+                            <span class="timestamp text-xs font-mono text-gray-700">{{ msg.timestamp.strftime('%H:%M') }}</span>
+                        </div>
+                        <div class="message-content text-gray-800">{{ msg.message }}</div>
+                    </div>
+                {% endif %}
+
+            {% endfor %}
+
+        </div>
+        <form method="POST" class="message-form flex space-x-4">
+            <input type="hidden" name="chat_id" value="{{ chat.id }}">
+
+            <div class="form-group flex-grow">
+                <textarea name="message" placeholder="Введите сообщение..." required rows="2"
+                          class="w-full p-3 border-2 border-black font-mono resize-none focus:outline-none focus:shadow-hard-hover"></textarea></div>
+
+            <button type="submit"
+                    class="lr-btn h-full shrink-0 text-white font-black uppercase px-6 border-2 shadow-hard active:shadow-none active:translate-y-0 transition-all">
+                <i class="fa-solid fa-paper-plane block text-xl mb-1"></i>
+                <span class="text-xs">ОТПРАВИТЬ</span>
+            </button>
+        </form>
+
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        const chatMessages = document.getElementById('chat-messages');
+        if (chatMessages) {
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+    </script>
+{% endblock %}

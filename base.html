@@ -73,20 +73,19 @@
         }
 
         .flash {
-            border: 2px solid #000;
             padding: 12px;
             margin-bottom: 16px;
             font-weight: bold;
             text-align: center;
         }
-        .flash.success {
+        /* .flash.success {
             background-color: #00F5D4;
-        }
+        } */
         .flash.error {
             background-color: #FF6B6B;
         }
 
-        .lb-div {
+        .lb-div, .flash {
             background-color: #ccd7ff;
             border-color: #99afff;
             border-radius: 2rem;
@@ -140,16 +139,35 @@
             border-color: #000000;
             color: black
         }
+
+        .lm-div {
+            background-color: #C06465;
+            border-color: #a26667;
+            border-radius: 2rem;
+            border-width: 0.15rem;
+            color: gray;
+        }
+        .lm-btn {
+            background-color: #C06465;
+            border-color: #000000;
+            border-radius: 2rem;
+            border-width: 0.1rem;
+            color: rgb(232, 232, 232)
+        }
+        .lm-btn:hover {
+            background-color: #a26667;
+            border-color: #775556;
+        }
     </style>
 </head>
 <body>
-
-<header class="lb-div text-white sticky top-0 z-40">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-        <div class="logo">
-            <h1 class="text-2xl md:text-3xl font-black uppercase tracking-widest lr-div px-2 py-0.5">
-                Гимназия №179
-            </h1>
+<header class="lb-div border-[2px] rounded-none m-0 text-white sticky top-0 z-40">
+    <div class="max-w-7xl px-1 sm:px-6 m-0 lg:px-8 py-1 flex justify-between items-center">
+        <div class="logo bg-white/50 rounded-full border-[0.01rem] flex items-center px-2">
+            <img class="h-[3.5rem]" src="../static/images/logo-blue.png">
+            <h1 class="text-xl text-[#001858] md:text-3xl font-black tracking-widest">
+            Координата 179
+        </h1>
         </div>
         <div class="nav-container flex items-center space-x-4">
             <div class="dropdown relative">
@@ -163,7 +181,6 @@
                     <a href="{{ url_for('centers') }}"><i class="fas fa-users w-5"></i> Ученическое самоуправление</a>
                     <a href="{{ url_for('events') }}"><i class="fas fa-calendar w-5"></i> Мероприятия</a>
                     <a href="{{ url_for('parent_club') }}"><i class="fas fa-user-tie w-5"></i> Родительский клуб</a>
-                    <a href="{{ url_for('events') }}"><i class="fas fa-child w-5"></i> Детские клубы</a>
                     <a href="{{ url_for('contacts') }}"><i class="fas fa-address-book w-5"></i> Контакты</a>
 
                     {% if session.logged_in %}
@@ -201,12 +218,12 @@
                     <i class="fas fa-user mr-2"></i> Портфолио
                 </a>
                 <a href="{{ url_for('logout') }}"
-                   class="inline-flex items-center lb-btn font-bold py-2 px-4 border-black uppercase shadow-hard-hover active:shadow-none transition-all text-sm">
+                   class="inline-flex items-center lr-btn font-bold py-2 px-4 border-black uppercase shadow-hard-hover active:shadow-none transition-all text-sm">
                     <i class="fas fa-sign-out-alt"></i>
                 </a>
                 {% else %}
                 <a href="{{ url_for('login') }}"
-                   class="inline-flex items-center lb-btn font-bold py-2 px-4 uppercase shadow-hard-hover active:shadow-none transition-all text-sm">
+                   class="inline-flex items-center lr-btn border-black hover:border-black font-bold py-2 px-4 uppercase shadow-hard-hover active:shadow-none transition-all text-sm">
                     <i class="fas fa-sign-in-alt mr-2"></i> Войти
                 </a>
                 {% endif %}
